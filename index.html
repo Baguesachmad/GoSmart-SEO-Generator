@@ -4,29 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEO & Meta Tag Generator</title>
-<link rel="stylesheet" href="css/style.css">
+<style>
+  /* ======= CSS RAPI ======= */
+  * { box-sizing: border-box; font-family: Arial, sans-serif; margin:0; padding:0; }
+  body { background:#f4f6fb; padding:20px; color:#333; line-height:1.6; }
+  h1 { text-align:center; color:#1e3a8a; margin-bottom:20px; }
+  form { background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,0.1); max-width:700px; margin:0 auto 30px; }
+  form label { display:block; margin-top:15px; font-weight:bold; }
+  form input[type="text"], form input[type="date"], form input[type="number"], form textarea {
+    width:100%; padding:10px; margin-top:5px; border:1px solid #ccc; border-radius:6px;
+  }
+  form textarea { resize:vertical; }
+  form small { display:block; margin-top:5px; color:#555; font-size:0.85em; }
+  form button { background-color:#1e3a8a; color:#fff; border:none; padding:12px 20px; border-radius:6px; cursor:pointer; margin-top:15px; margin-right:10px; font-weight:bold; transition:0.3s; }
+  form button:hover { background-color:#374eb0; }
+  #output { display:block; width:100%; max-width:700px; margin:0 auto 30px; padding:15px; font-family:monospace; font-size:0.9em; border-radius:10px; border:1px solid #ccc; background:#fafafa; }
+  h2 { color:#1e3a8a; margin-bottom:10px; text-align:center; }
+  ul, ol { max-width:700px; margin:0 auto 30px; padding-left:20px; }
+  ul li, ol li { margin-bottom:10px; }
+</style>
 </head>
 <body>
-<h1>SEO & Structured Data Generator</h1>
 
-<p>Isi form di bawah ini untuk menghasilkan <strong>Meta Tag SEO</strong> dan <strong>JSON-LD Structured Data</strong> untuk artikel/blog kamu. Output bisa langsung dimasukkan ke <code>&lt;head&gt;</code> template Blogger.</p>
+<h1>SEO & Structured Data Generator</h1>
+<p>Isi form di bawah ini untuk membuat <strong>Meta Tag SEO</strong> dan <strong>JSON-LD Structured Data</strong> untuk artikel/blog kamu. Output bisa langsung dimasukkan ke <code>&lt;head&gt;</code> template Blogger.</p>
 
 <form id="metaForm">
   <label>Judul Artikel:</label>
   <input type="text" id="title" required>
-  <small>Judul artikel/blog. Akan digunakan untuk meta title, og:title, twitter:title, dan JSON-LD headline.</small><br>
+  <small>Judul artikel/blog. Digunakan untuk meta title, og:title, twitter:title, JSON-LD headline.</small>
 
   <label>Deskripsi:</label>
   <textarea id="description" required></textarea>
-  <small>Deskripsi artikel. Akan digunakan di meta description, og:description, twitter:description, dan JSON-LD description.</small><br>
+  <small>Deskripsi artikel. Digunakan di meta description, og:description, twitter:description, JSON-LD description.</small>
 
   <label>Thumbnail URL:</label>
   <input type="text" id="image">
-  <small>URL gambar thumbnail/artikel. Digunakan untuk Open Graph, Twitter Card, dan JSON-LD image.</small><br>
+  <small>URL gambar thumbnail/artikel. Digunakan untuk Open Graph, Twitter Card, dan JSON-LD image.</small>
 
   <label>Nama Penulis:</label>
   <input type="text" id="author">
-  <small>Nama penulis artikel, digunakan di JSON-LD author.</small><br>
+  <small>Nama penulis artikel, digunakan di JSON-LD author.</small>
 
   <label>Tanggal Publish:</label>
   <input type="date" id="datePublished"><br>
@@ -36,11 +54,11 @@
 
   <label>Rating (0-5):</label>
   <input type="number" step="0.1" min="0" max="5" id="ratingValue">
-  <small>Nilai rata-rata rating artikel (opsional, untuk bintang di search engine).</small><br>
+  <small>Nilai rata-rata rating artikel (opsional, untuk bintang di search engine).</small>
 
   <label>Jumlah Penilai:</label>
   <input type="number" id="ratingCount">
-  <small>Jumlah orang yang menilai (opsional, untuk AggregateRating).</small><br>
+  <small>Jumlah orang yang menilai (opsional, untuk AggregateRating).</small>
 
   <button type="button" onclick="generateMeta()">Generate</button>
   <button type="button" onclick="copyOutput()">Copy All</button>
@@ -51,22 +69,74 @@
 
 <h2>Informasi & Cara Penggunaan</h2>
 <ul>
-<li><strong>Meta Tag SEO:</strong> Membantu Google dan mesin pencari lain memahami isi artikel.</li>
-<li><strong>Open Graph (og:)</strong> Membuat artikel terlihat bagus saat dibagikan di Facebook/WhatsApp.</li>
-<li><strong>Twitter Card:</strong> Membuat artikel terlihat profesional saat dibagikan di Twitter.</li>
-<li><strong>JSON-LD Structured Data:</strong> Membantu Google menampilkan rich snippet seperti rating bintang, judul, deskripsi, dan thumbnail di hasil pencarian.</li>
+<li><strong>Meta Tag SEO:</strong> Membantu Google memahami isi artikel.</li>
+<li><strong>Open Graph (og:)</strong> Membuat artikel terlihat bagus saat dibagikan di Facebook/WA.</li>
+<li><strong>Twitter Card:</strong> Membuat artikel terlihat profesional di Twitter.</li>
+<li><strong>JSON-LD Structured Data:</strong> Membantu Google menampilkan rich snippet seperti rating, judul, deskripsi, thumbnail.</li>
 <li><strong>Rating & AggregateRating:</strong> Opsional. Jika diisi, Google dapat menampilkan bintang rating di hasil pencarian.</li>
 <li><strong>Cara pakai:</strong>
   <ol>
     <li>Isi form dengan data artikel.</li>
     <li>Klik Generate → hasil muncul di textarea.</li>
     <li>Klik Copy All untuk menyalin.</li>
-    <li>Masukkan output ke <code>&lt;head&gt;</code> template Blogger atau template HTML blog kamu.</li>
-    <li>Tes di <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> untuk memverifikasi JSON-LD dan rating.</li>
+    <li>Masukkan output ke <code>&lt;head&gt;</code> template Blogger.</li>
+    <li>Tes di <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a>.</li>
   </ol>
 </li>
 </ul>
 
-<script src="js/script.js"></script>
+<script>
+function generateMeta() {
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const image = document.getElementById("image").value;
+  const author = document.getElementById("author").value;
+  const datePublished = document.getElementById("datePublished").value;
+  const dateModified = document.getElementById("dateModified").value;
+  const ratingValue = document.getElementById("ratingValue").value;
+  const ratingCount = document.getElementById("ratingCount").value;
+
+  const metaTags = `
+<!-- SEO Meta -->
+<meta name="description" content="${description}">
+<meta name="keywords" content="${title}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:image" content="${image}">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${description}">
+<meta name="twitter:image" content="${image}">
+
+<!-- JSON-LD BlogPosting + Rating -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "${title}",
+  "description": "${description}",
+  "image": "${image}",
+  "author": {"@type": "Person","name": "${author}"},
+  "datePublished": "${datePublished}",
+  "dateModified": "${dateModified}",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "${ratingValue || '0'}",
+    "ratingCount": "${ratingCount || '0'}"
+  }
+}
+</script>
+`;
+  document.getElementById("output").value = metaTags.trim();
+}
+
+function copyOutput() {
+  const output = document.getElementById("output");
+  output.select();
+  navigator.clipboard.writeText(output.value).then(() => {
+    alert("Output berhasil disalin!");
+  });
+}
+</script>
+
 </body>
 </html>
