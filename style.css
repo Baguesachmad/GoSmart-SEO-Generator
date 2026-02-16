@@ -1,0 +1,109 @@
+/* Reset sederhana */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body */
+body {
+  background-color: #f4f6fb;
+  padding: 20px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Judul */
+h1 {
+  text-align: center;
+  color: #1e3a8a; /* biru */
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 700px;
+  margin: 0 auto 30px;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="date"],
+form input[type="number"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form small {
+  display: block;
+  margin-top: 5px;
+  color: #555;
+  font-size: 0.85em;
+}
+
+/* Button styling */
+form button {
+  background-color: #1e3a8a;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-right: 10px;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background-color: #374eb0;
+}
+
+/* Output textarea */
+#output {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  padding: 15px;
+  font-family: monospace;
+  font-size: 0.9em;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+}
+
+/* Info & panduan */
+h2 {
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+ul, ol {
+  max-width: 700px;
+  margin: 0 auto 30px;
+  padding-left: 20px;
+}
+
+ul li, ol li {
+  margin-bottom: 10px;
+}
