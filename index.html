@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO & Meta Tag Generator</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<h1>SEO & Structured Data Generator</h1>
+
+<p>Isi form di bawah ini untuk menghasilkan <strong>Meta Tag SEO</strong> dan <strong>JSON-LD Structured Data</strong> untuk artikel/blog kamu. Output bisa langsung dimasukkan ke <code>&lt;head&gt;</code> template Blogger.</p>
+
+<form id="metaForm">
+  <label>Judul Artikel:</label>
+  <input type="text" id="title" required>
+  <small>Judul artikel/blog. Akan digunakan untuk meta title, og:title, twitter:title, dan JSON-LD headline.</small><br>
+
+  <label>Deskripsi:</label>
+  <textarea id="description" required></textarea>
+  <small>Deskripsi artikel. Akan digunakan di meta description, og:description, twitter:description, dan JSON-LD description.</small><br>
+
+  <label>Thumbnail URL:</label>
+  <input type="text" id="image">
+  <small>URL gambar thumbnail/artikel. Digunakan untuk Open Graph, Twitter Card, dan JSON-LD image.</small><br>
+
+  <label>Nama Penulis:</label>
+  <input type="text" id="author">
+  <small>Nama penulis artikel, digunakan di JSON-LD author.</small><br>
+
+  <label>Tanggal Publish:</label>
+  <input type="date" id="datePublished"><br>
+
+  <label>Tanggal Update:</label>
+  <input type="date" id="dateModified"><br>
+
+  <label>Rating (0-5):</label>
+  <input type="number" step="0.1" min="0" max="5" id="ratingValue">
+  <small>Nilai rata-rata rating artikel (opsional, untuk bintang di search engine).</small><br>
+
+  <label>Jumlah Penilai:</label>
+  <input type="number" id="ratingCount">
+  <small>Jumlah orang yang menilai (opsional, untuk AggregateRating).</small><br>
+
+  <button type="button" onclick="generateMeta()">Generate</button>
+  <button type="button" onclick="copyOutput()">Copy All</button>
+</form>
+
+<h2>Hasil Meta Tag & JSON-LD</h2>
+<textarea id="output" rows="15" cols="80"></textarea>
+
+<h2>Informasi & Cara Penggunaan</h2>
+<ul>
+<li><strong>Meta Tag SEO:</strong> Membantu Google dan mesin pencari lain memahami isi artikel.</li>
+<li><strong>Open Graph (og:)</strong> Membuat artikel terlihat bagus saat dibagikan di Facebook/WhatsApp.</li>
+<li><strong>Twitter Card:</strong> Membuat artikel terlihat profesional saat dibagikan di Twitter.</li>
+<li><strong>JSON-LD Structured Data:</strong> Membantu Google menampilkan rich snippet seperti rating bintang, judul, deskripsi, dan thumbnail di hasil pencarian.</li>
+<li><strong>Rating & AggregateRating:</strong> Opsional. Jika diisi, Google dapat menampilkan bintang rating di hasil pencarian.</li>
+<li><strong>Cara pakai:</strong>
+  <ol>
+    <li>Isi form dengan data artikel.</li>
+    <li>Klik Generate → hasil muncul di textarea.</li>
+    <li>Klik Copy All untuk menyalin.</li>
+    <li>Masukkan output ke <code>&lt;head&gt;</code> template Blogger atau template HTML blog kamu.</li>
+    <li>Tes di <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> untuk memverifikasi JSON-LD dan rating.</li>
+  </ol>
+</li>
+</ul>
+
+<script src="js/script.js"></script>
+</body>
+</html>
